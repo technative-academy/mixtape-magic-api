@@ -1,0 +1,21 @@
+Tables:
+-users
+    -ID (unique)
+    -username
+    -email (unique)
+    -password
+
+-playlists
+    -ID
+    -name
+    -owner (user ID)
+    -created date
+    -cover image
+    -description
+
+-songs
+    -ID
+    -name
+    -artist
+    -link to file
+    -playlist (playlist ID)

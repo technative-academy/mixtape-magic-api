@@ -1,0 +1,46 @@
+Tables:
+-users
+    -ID (unique)
+    -username
+    -email (unique)
+    -password
+    -followed playlists (list of playlist ids) #stretch
+
+-playlists
+    -ID
+    -name
+    -owner
+    -collaborators #stretch
+    -followers (list of user ids) #stretch
+    -created date
+    -cover image
+    -songs
+
+-songs
+    -ID
+    -name
+    -artist
+    -release date
+    -genres (list of tags)
+    -art
+    -album
+    -length
+    -link to file
+
+--- Stretch goals ---
+-artists
+    -ID
+    -name
+    -picture
+    -bio
+    -albums
+
+-albums
+    -ID
+    -title
+    -artist
+    -release date
+    -genres (list of tags)
+    -cover image
+    -playtime
+    -songs (list of song ids)

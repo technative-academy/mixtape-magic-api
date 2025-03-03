@@ -1,0 +1,27 @@
+Endpoints:
+/api/auth
+    -/register POST
+    -/login POST
+
+/api/users
+    -/ GET
+
+/api/me
+    -/ PATCH
+    -/ GET
+
+/api/playlists
+    -/ of playlists from all users GET
+    -/:playlistID about a specific playlist GET
+
+/api/my-playlists
+    -/ list of your own playlists GET
+    -/ new playlist POST
+    -/:playlistID about a specific playlist GET
+    -/:playlistID edit playlist PATCH
+    -/:playlistID delete playlist DELETE
+
+/api/my-playlists/:playlistID/songs
+    -/ add song POST
+    -/:songID edit song PATCH
+    -/:songID remove song DELETE

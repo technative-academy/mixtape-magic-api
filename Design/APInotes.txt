@@ -1,27 +1,221 @@
 Endpoints:
 /api/auth
     -/register POST
+    Request:
+    {
+        "username":"John Doe",
+        "email":"johndoe@example.com",
+        "password":"helloworld"
+    }
+    Response:
+    201 Created
+
     -/login POST
+    Request:
+    {
+        "email":"johndoe@example.com",
+        "password":"helloworld"
+    }
+    Response:
+    200 OK
 
 /api/users
     -/ GET
+    Request: None
+    Response:
+    200 OK
+    [
+        {
+            "ID":1,
+            "username":"John Doe"
+        },
+        {
+            "ID":2,
+            "username":"Jane Doe"
+        }
+    ]
 
 /api/me
     -/ PATCH
+    Request (example for updating user email):
+    {
+        "email":"johndoe@newaddress.com"
+    }
+    Response:
+    200 OK
+
     -/ GET
+    Request: None
+    Response:
+    200 OK
+    {
+        "ID":1,
+        "username":"John Doe",
+        "email":"johndoe@example.com"
+    }
 
 /api/playlists
     -/ of playlists from all users GET
+    Request: None
+    Response:
+    200 OK
+    [
+        {
+            "ID":1,
+            "name":"Playlist 1",
+            "owner":1,
+            "dateCreated":"2025-03-02",
+            "coverImage":"images/example.png"
+        },
+        {
+            "ID":2,
+            "name":"Playlist 2",
+            "owner":5,
+            "dateCreated":"2025-02-25",
+            "coverImage":"images/example.png"
+        },
+        {
+            "ID":3,
+            "name":"Playlist 3",
+            "owner":9,
+            "dateCreated":"2025-01-05",
+            "coverImage":"images/example.png"
+        }
+    ]
+    
     -/:playlistID about a specific playlist GET
+    Request: None
+    Response:
+    200 OK
+    {
+        "ID":1,
+        "name":"Playlist 1",
+        "owner":1,
+        "dateCreated":"2025-03-02",
+        "coverImage":"images/example.png",
+        "description":"This is an example playlist.",
+        "songs": [
+            {
+                "ID":1,
+                "name":"Example Song 1",
+                "artist":"Example Artist 1",
+                "file":"songs/examplesong1.mp3"
+            },
+            {
+                "ID":2,
+                "name":"Example Song 2",
+                "artist":"Example Artist 2",
+                "file":"songs/examplesong2.mp3"
+            },
+            {
+                "ID":3,
+                "name":"Example Song 3",
+                "artist":"Example Artist 3",
+                "file":"songs/examplesong3.mp3"
+            }
+        ]
+    }
 
 /api/my-playlists
     -/ list of your own playlists GET
+    Request: None
+    Response:
+    200 OK
+    [
+        {
+            "ID":2,
+            "name":"Playlist 2",
+            "owner":5,
+            "dateCreated":"2025-02-25",
+            "coverImage":"images/example.png"
+        },
+        {
+            "ID":7,
+            "name":"Playlist 7",
+            "owner":5,
+            "dateCreated":"2025-01-05",
+            "coverImage":"images/example.png"
+        }
+    ]
+    
     -/ new playlist POST
+    Request:
+    {
+        "name":"New Playlist",
+        "userID":5,
+        "createdDate":"2025-03-03",
+        "coverImage":"images/example.png",
+        "description":"This is an example of a new playlist."
+    }
+    Response:
+    201 Created
+    
     -/:playlistID about a specific playlist GET
+    Request: None
+    Response:
+    {
+        "ID":7,
+        "name":"Playlist 7",
+        "owner":5,
+        "dateCreated":"2025-01-05",
+        "coverImage":"images/example.png"
+        "description":"This is an example playlist.",
+        "songs": [
+            {
+                "ID":1,
+                "name":"Example Song 1",
+                "artist":"Example Artist 1",
+                "file":"songs/examplesong1.mp3"
+            },
+            {
+                "ID":2,
+                "name":"Example Song 2",
+                "artist":"Example Artist 2",
+                "file":"songs/examplesong2.mp3"
+            },
+            {
+                "ID":3,
+                "name":"Example Song 3",
+                "artist":"Example Artist 3",
+                "file":"songs/examplesong3.mp3"
+            }
+        ]
+    }
+    
     -/:playlistID edit playlist PATCH
+    Request (example for updating the playlist name and image):
+    {
+        "name":"New Playlist Name",
+        "coverImage":"images/newexample.png"
+    }
+    Response:
+    200 OK
+    
     -/:playlistID delete playlist DELETE
-
+    Request: None
+    Response:
+    204 No Content
+    
 /api/my-playlists/:playlistID/songs
     -/ add song POST
+    Request: 
+    {
+        "name":"Example Song 5",
+        "artist":"Example Artist",
+        "file":"songs/examplesong5.mp3"
+    }
+    Response:
+    201 Created
+    
     -/:songID edit song PATCH
+    Request (example for changing song name):
+    {
+        "name":"New song name"
+    }
+    Response:
+    200 OK
+    
     -/:songID remove song DELETE
+    Request: None
+    Response:
+    204 No Content

@@ -9,3 +9,9 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`App is listening on port ${port}`);
 });
+
+app.get('/api/playlists/', (req, res) => {
+    // return example JSON data - remove once database query is implemented
+    const json = require('./exampleData/playlists.json');
+    res.status(200).send(json);
+});

@@ -1,23 +1,23 @@
 [
     {
-        "ID":1,
-        "name":"Playlist 1",
-        "owner":1,
-        "dateCreated":"2025-03-02",
-        "coverImage":"images/example.png"
+        "ID": 1,
+        "name": "Playlist 1",
+        "owner": 1,
+        "dateCreated": "2025-03-02",
+        "coverImage": "images/example.png"
     },
     {
-        "ID":2,
-        "name":"Playlist 2",
-        "owner":5,
-        "dateCreated":"2025-02-25",
-        "coverImage":"images/example.png"
+        "ID": 2,
+        "name": "Playlist 2",
+        "owner": 5,
+        "dateCreated": "2025-02-25",
+        "coverImage": "images/example.png"
     },
     {
-        "ID":3,
-        "name":"Playlist 3",
-        "owner":9,
-        "dateCreated":"2025-01-05",
-        "coverImage":"images/example.png"
+        "ID": 3,
+        "name": "Playlist 3",
+        "owner": 9,
+        "dateCreated": "2025-01-05",
+        "coverImage": "images/example.png"
     }
 ]

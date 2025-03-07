@@ -1,6 +1,18 @@
-const express = require('express');
+import express from 'express';
+import dotenv from 'dotenv';
+import pg from 'pg';
+
+dotenv.config();
+
 const app = express();
 const port = 3000;
+const connectionString = process.env.XA_DB_CSTRING;
+
+const { Client } = pg;
+const client = new Client({
+    connectionString
+});
+
 
 const routes = require('./src/routes.js');
 

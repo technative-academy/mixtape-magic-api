@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import pg from 'pg';
+import routes from './src/routes.js';
 
 dotenv.config();
 
@@ -13,8 +14,6 @@ const client = new Client({
     connectionString
 });
 
-
-const routes = require('./src/routes.js');
 
 app.get('/', (req, res) => {
     res.send('Hello world!');

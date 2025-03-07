@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 
-playlistsRoutes = require('./routes/playlists.js');
-usersRoutes = require('./routes/users.js');
+import playlistsRoutes from './routes/playlists.js';
+import usersRoutes from './routes/users.js';
 
 const router = express.Router();
 
 router.use('/playlists', playlistsRoutes);
 router.use('/users', usersRoutes);
 
-module.exports = router;
+export default router;

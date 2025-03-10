@@ -1,13 +1,21 @@
 import express from 'express';
+import pool from '../db.js';
 import usersJson from '../../exampleData/users.json' with { type: 'json' };
 
 const router = express.Router();
 
 // GET /api/users/
 router.get('/', async (req, res) => {
-    // return example JSON data - remove once database query is implemented
-    const json = usersJson;
-    res.status(200).json(json);
+    //// return example JSON data - remove once database query is implemented
+    // const json = usersJson;
+    // res.status(200).json(json);
+
+    try {
+        const results = await pool.query('SELECT * FROM users');
+        res.json(results.rows);
+    } catch {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 export default router;

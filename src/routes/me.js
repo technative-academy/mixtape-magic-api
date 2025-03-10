@@ -1,5 +1,5 @@
 import express from 'express';
-import meJson from '../../exampleData/me.json'  assert { type: 'json' };
+import meJson from '../../exampleData/me.json' assert { type: 'json' };
 
 const router = express.Router();
 
@@ -9,12 +9,8 @@ router.get('/', async, (req, res) => {
     res.status(200).json(json);
 });
 
-router.put('/', async, (req, res) => {
-    
-});
+router.put('/', async, (req, res) => {});
 
-router.delete('/', async (req, res) => {
-    
-});
+router.delete('/', async (req, res) => {});
 
 export default router;

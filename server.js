@@ -12,12 +12,12 @@ const connectionString = process.env.XA_DB_CSTRING;
 
 const { Client } = pg;
 const client = new Client({
-    connectionString
+    connectionString,
 });
 
 const corsOptions = {
     origin: process.env.REACT_APP_DOMAIN,
-    credentials: true
+    credentials: true,
 };
 
 app.get('/', (req, res) => {

@@ -1,10 +1,11 @@
 import express from 'express';
+import meJson from '../../exampleData/me.json'  assert { type: 'json' };
 
 const router = express.Router();
 
 // Get /api/me/
 router.get('/', async, (req, res) => {
-    const json = require('../../exampleData/me.json');
+    const json = meJson;
     res.status(200).json(json);
 });
 

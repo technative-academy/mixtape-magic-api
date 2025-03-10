@@ -16,8 +16,8 @@ const client = new Client({
 });
 
 const corsOptions = {
-    origin: process.env.REACT_APP_DOMAIN,
-    credentials: true,
+    //origin: process.env.REACT_APP_DOMAIN,
+    //credentials: true,
 };
 
 app.get('/', async (req, res) => {

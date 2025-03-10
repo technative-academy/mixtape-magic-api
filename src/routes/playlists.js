@@ -29,7 +29,7 @@ router.get('/:playlistID', async (req, res) => {
     const query = 'SELECT * FROM playlists WHERE id = ?';
     try {
         const results = await pool.query(query, [req.params.playlistID]);
-        res.json(results.rows);
+        res.json(results.rows[0]);
     } catch {
         res.status(500).json({ error: 'Internal Server Error' });
     }

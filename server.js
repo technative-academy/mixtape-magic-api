@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import pg from 'pg';
 import routes from './src/routes.js';
@@ -14,11 +15,16 @@ const client = new Client({
     connectionString
 });
 
+const corsOptions = {
+    origin: process.env.REACT_APP_DOMAIN,
+    credentials: true
+};
 
 app.get('/', (req, res) => {
     res.send('Hello world!');
 });
 
+app.use(cors(corsOptions));
 app.use('/api', routes);
 
 app.listen(port, () => {

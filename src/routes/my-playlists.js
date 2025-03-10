@@ -2,6 +2,7 @@ import express from 'express';
 
 const router = express.Router();
 
+// Endpoints for playlists
 // GET /api/my-playlists/
 router.get('/', async (req, res) => {
     // return example JSON data - remove once database query is implemented
@@ -10,7 +11,7 @@ router.get('/', async (req, res) => {
 });
 
 // GET /api/my-playlists/:playlistID
-router.get('/api/my-playlists/:playlistID', (req, res) => {
+router.get('/:playlistID', (req, res) => {
     // access the playlistID from the URL by using req.params.playlistID
     const json = require('../../exampleData/myplaylistsSingle.json');
     res.status(200).json(json);
@@ -23,14 +24,33 @@ router.post('/', (req, res) => {
 });
 
 // PATCH /api/my-playlists/:playlistID
-router.patch('/api/my-playlists/:playlistID', (req, res) => {
+router.patch('/:playlistID', (req, res) => {
     // update the specified playlist
     res.status(200);
 });
 
 // DELETE /api/my-playlists/:playlistID
-router.delete('/api/my-playlists/:playlistID', (req, res) => {
+router.delete('/:playlistID', (req, res) => {
     // delete the specified playlist
+    res.status(204);
+});
+
+// Endpoints for songs
+// POST /api/my-playlists/:playlistID/songs/
+router.post('/:playlistID/songs/', (req, res) => {
+    // add a song to the specified playlist
+    res.status(201);
+});
+
+// PATCH /api/my-playlists/:playlistID/songs/
+router.patch('/:playlistID/songs/:songID', (req, res) => {
+    // update the specified song
+    res.status(200);
+});
+
+// DELETE /api/my-playlists/:playlistID/songs/
+router.delete('/:playlistID/songs/:songID', (req, res) => {
+    // delete the specified song
     res.status(204);
 });
 

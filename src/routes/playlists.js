@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 });
 
 // GET /api/playlists/:playlistID
-router.get('/api/playlists/:playlistID', (req, res) => {
+router.get('/:playlistID', (req, res) => {
     // access the playlistID from the URL by using req.params.playlistID
     const json = require('../../exampleData/playlistSingle.json');
     res.status(200).json(json);

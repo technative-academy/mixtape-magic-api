@@ -1,6 +1,6 @@
 import express from 'express';
-import playlistsJson from '../../exampleData/playlists.json' assert { type: 'json' };
-import playlistsSingleJson from '../../exampleData/playlistSingle.json' assert { type: 'json' };
+import playlistsJson from '../../exampleData/playlists.json' with { type: 'json' };
+import playlistsSingleJson from '../../exampleData/playlistSingle.json' with { type: 'json' };
 
 const router = express.Router();
 

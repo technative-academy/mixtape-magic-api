@@ -1,5 +1,5 @@
 import express from 'express';
-import usersJson from '../../exampleData/users.json' assert { type: 'json' };
+import usersJson from '../../exampleData/users.json' with { type: 'json' };
 
 const router = express.Router();
 

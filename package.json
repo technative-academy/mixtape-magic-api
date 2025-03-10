@@ -1,32 +1,32 @@
 {
-  "name": "mixtape-magic-api",
-  "version": "1.0.0",
-  "description": "",
-  "homepage": "https://github.com/technative-academy/mixtape-magic-api#readme",
-  "bugs": {
-    "url": "https://github.com/technative-academy/mixtape-magic-api/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/technative-academy/mixtape-magic-api.git"
-  },
-  "license": "ISC",
-  "author": "",
-  "type": "module",
-  "main": "server.js",
-  "directories": {
-    "doc": "docs"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "pg": "^8.13.3"
-  },
-  "devDependencies": {
-    "prettier": "^3.5.3"
-  }
+    "name": "mixtape-magic-api",
+    "version": "1.0.0",
+    "description": "",
+    "homepage": "https://github.com/technative-academy/mixtape-magic-api#readme",
+    "bugs": {
+        "url": "https://github.com/technative-academy/mixtape-magic-api/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/technative-academy/mixtape-magic-api.git"
+    },
+    "license": "ISC",
+    "author": "",
+    "type": "module",
+    "main": "server.js",
+    "directories": {
+        "doc": "docs"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
+        "pg": "^8.13.3"
+    },
+    "devDependencies": {
+        "prettier": "^3.5.3"
+    }
 }

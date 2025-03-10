@@ -1,7 +1,6 @@
 import express from 'express';
 import usersJson from '../../exampleData/users.json';
 
-
 const router = express.Router();
 
 // GET /api/users/

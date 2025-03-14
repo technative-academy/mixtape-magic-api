@@ -19,8 +19,9 @@ router.get('/', async (req, res) => {
 router.get('/:playlistID', async (req, res) => {
     // access the playlistID from the URL by using req.params.playlistID
     try {
-        const results = await pool.query('SELECT * FROM playlists WHERE owner_id = $1 AND id = $2', [req.user.id, req.params.playlistID]);
-        res.status(200).json(results.rows[0]);
+        const playlist = await pool.query('SELECT * FROM playlists WHERE owner_id = $1 AND id = $2', [req.user.id, req.params.playlistID]).rows[0];
+        playlist.songs = await pool.query('SELECT * FROM songs WHERE playlist_id = $1', [req.params.playlistID]).rows;
+        res.status(200).json(playlist);
     } catch (error) {
         res.sendStatus(500);
     }

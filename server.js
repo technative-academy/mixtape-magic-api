@@ -20,16 +20,16 @@ const corsOptions = {
     //credentials: true,
 };
 
-app.get('/', async (req, res) => {
-    res.send('Hello world!');
-    // try {
-    //     const results = await client.query('SELECT * FROM users');
-    //     //console.log(results.rows);
-    //     res.json(results.rows);
-    // } catch {
-    //     res.status(500).json({ error: 'Internal Server Error' });
-    // }
-});
+// app.get('/', async (req, res) => {
+//     res.send('Hello world!');
+//     // try {
+//     //     const results = await client.query('SELECT * FROM users');
+//     //     //console.log(results.rows);
+//     //     res.json(results.rows);
+//     // } catch {
+//     //     res.status(500).json({ error: 'Internal Server Error' });
+//     // }
+// });
 
 app.use(cors(corsOptions));
 app.use('/api', routes);

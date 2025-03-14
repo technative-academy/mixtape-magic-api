@@ -1,13 +1,17 @@
 import express from 'express';
-import usersJson from '../../exampleData/users.json' with { type: 'json' };
+import pool from '../db.js';
 
 const router = express.Router();
 
 // GET /api/users/
 router.get('/', async (req, res) => {
-    // return example JSON data - remove once database query is implemented
-    const json = usersJson;
-    res.status(200).json(json);
+    // get a list of all registered users
+    try {
+        const results = await pool.query('SELECT * FROM users');
+        res.json(results.rows);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 export default router;

@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
         const results = await pool.query('SELECT * FROM playlists');
         res.json(results.rows);
     } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.sendStatus(500);
     }
 });
 
@@ -31,7 +31,7 @@ router.get('/:playlistID', async (req, res) => {
         const results = await pool.query(query, [req.params.playlistID]);
         res.json(results.rows[0]);
     } catch {
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.sendStatus(500);
     }
 });
 

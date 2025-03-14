@@ -87,21 +87,55 @@ router.delete('/:playlistID', async (req, res) => {
 
 // Endpoints for songs
 // POST /api/my-playlists/:playlistID/songs/
-router.post('/:playlistID/songs/', (req, res) => {
+router.post('/:playlistID/songs/', async (req, res) => {
     // add a song to the specified playlist
-    res.status(201);
+    // res.status(201);
+
+    try {
+        await pool.query('INSERT INTO songs (title, artist, song_url, playlist_id) VALUES ($1, $2, $3, $4);', [
+            req.body.name,
+            req.body.artist,
+            req.body.file,
+            req.params.playlistID,
+        ]);
+        res.sendStatus(201);
+    } catch (error) {
+        res.sendStatus(500);
+    }
 });
 
 // PATCH /api/my-playlists/:playlistID/songs/
-router.patch('/:playlistID/songs/:songID', (req, res) => {
+router.patch('/:playlistID/songs/:songID', async (req, res) => {
     // update the specified song
-    res.status(200);
+    // res.status(200);
+
+    try {
+        if (typeof req.body.name !== 'undefined') {
+            await pool.query('UPDATE songs SET title=$1 WHERE id=$2;', [req.body.name, req.params.songID]);
+        }
+        if (typeof req.body.artist !== 'undefined') {
+            await pool.query('UPDATE songs SET artist=$1 WHERE id=$2;', [req.body.artist, req.params.songID]);
+        }
+        if (typeof req.body.file !== 'undefined') {
+            await pool.query('UPDATE songs SET song_url=$1 WHERE id=$2;', [req.body.file, req.params.songID]);
+        }
+        res.sendStatus(200);
+    } catch (error) {
+        res.sendStatus(500);
+    }
 });
 
 // DELETE /api/my-playlists/:playlistID/songs/
-router.delete('/:playlistID/songs/:songID', (req, res) => {
+router.delete('/:playlistID/songs/:songID', async (req, res) => {
     // delete the specified song
     res.status(204);
+
+    try {
+        await pool.query('DELETE FROM songs WHERE id=$1;', [req.params.songID]);
+        res.sendStatus(204);
+    } catch (error) {
+        res.sendStatus(500);
+    }
 });
 
 export default router;

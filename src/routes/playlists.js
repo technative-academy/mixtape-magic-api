@@ -7,10 +7,7 @@ const router = express.Router();
 
 // GET /api/playlists/
 router.get('/', async (req, res) => {
-    // return example JSON data - remove once database query is implemented
-    // const json = playlistsJson;
-    // res.status(200).json(json);
-
+    // get a list of all playlists
     try {
         const results = await pool.query('SELECT * FROM playlists');
         res.json(results.rows);
@@ -21,14 +18,9 @@ router.get('/', async (req, res) => {
 
 // GET /api/playlists/:playlistID
 router.get('/:playlistID', async (req, res) => {
-    // access the playlistID from the URL by using req.params.playlistID
-    // const json = playlistsSingleJson;
-    // res.status(200).json(json);
-
-    // construct parameterized query
-    const query = 'SELECT * FROM playlists WHERE id = ?';
+    // get a specific playlist by ID
     try {
-        const results = await pool.query(query, [req.params.playlistID]);
+        const results = await pool.query('SELECT * FROM playlists WHERE id = $1', [req.params.playlistID]);
         res.json(results.rows[0]);
     } catch {
         res.sendStatus(500);

@@ -6,10 +6,7 @@ const router = express.Router();
 
 // GET /api/users/
 router.get('/', async (req, res) => {
-    //// return example JSON data - remove once database query is implemented
-    // const json = usersJson;
-    // res.status(200).json(json);
-
+    // get a list of all registered users
     try {
         const results = await pool.query('SELECT * FROM users');
         res.json(results.rows);

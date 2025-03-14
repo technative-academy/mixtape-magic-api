@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     try {
         const results = await pool.query('SELECT * FROM users');
         res.json(results.rows);
-    } catch {
+    } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });

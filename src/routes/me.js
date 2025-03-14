@@ -1,7 +1,6 @@
 import express from 'express';
 import pool from '../db.js';
 import authenticateToken from '../middlewere/auth.js';
-import meJson from '../../exampleData/me.json' with { type: 'json' };
 
 const router = express.Router();
 

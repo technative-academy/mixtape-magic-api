@@ -1,6 +1,5 @@
 import express from 'express';
 import pool from '../db.js';
-import usersJson from '../../exampleData/users.json' with { type: 'json' };
 
 const router = express.Router();
 

@@ -1,7 +1,5 @@
 import express from 'express';
 import pool from '../db.js';
-import playlistsJson from '../../exampleData/playlists.json' with { type: 'json' };
-import playlistsSingleJson from '../../exampleData/playlistSingle.json' with { type: 'json' };
 
 const router = express.Router();
 

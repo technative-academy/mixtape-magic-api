@@ -47,13 +47,13 @@ router.post('/', async (req, res) => {
 router.patch('/:playlistID', async (req, res) => {
     // update the specified playlist
     try {
-        if (typeof req.body.name !== 'undefined') {
+        if (typeof req.body.name != 'undefined') {
             await pool.query('UPDATE playlists SET name=$1 WHERE id=$2;', [req.body.name, req.params.playlistID]);
         }
-        if (typeof req.body.description !== 'undefined') {
+        if (typeof req.body.description != 'undefined') {
             await pool.query('UPDATE playlists SET description=$1 WHERE id=$2;', [req.body.description, req.params.playlistID]);
         }
-        if (typeof req.body.coverImage !== 'undefined') {
+        if (typeof req.body.coverImage != 'undefined') {
             await pool.query('UPDATE playlists SET image_url=$1 WHERE id=$2;', [req.body.coverImage, req.params.playlistID]);
         }
         res.sendStatus(200);
@@ -94,13 +94,13 @@ router.post('/:playlistID/songs/', async (req, res) => {
 router.patch('/:playlistID/songs/:songID', async (req, res) => {
     // update the specified song
     try {
-        if (typeof req.body.name !== 'undefined') {
+        if (typeof req.body.name != 'undefined') {
             await pool.query('UPDATE songs SET title=$1 WHERE id=$2;', [req.body.name, req.params.songID]);
         }
-        if (typeof req.body.artist !== 'undefined') {
+        if (typeof req.body.artist != 'undefined') {
             await pool.query('UPDATE songs SET artist=$1 WHERE id=$2;', [req.body.artist, req.params.songID]);
         }
-        if (typeof req.body.file !== 'undefined') {
+        if (typeof req.body.file != 'undefined') {
             await pool.query('UPDATE songs SET song_url=$1 WHERE id=$2;', [req.body.file, req.params.songID]);
         }
         res.sendStatus(200);

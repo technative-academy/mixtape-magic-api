@@ -15,7 +15,7 @@ const generateRefreshToken = (user) => {
     return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
 };
 
-const registerUser = async (name, email, password, bio) => {
+const registerUser = async (username, email, password) => {
     // Check if the email already exists
     const emailCheckResult = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
     if (emailCheckResult.rows.length > 0) {
@@ -25,11 +25,10 @@ const registerUser = async (name, email, password, bio) => {
     // If the email does not exist, proceed with registration
     // hash the password and insert the new user into the database
     const hashedPassword = await bcrypt.hash(password, 10);
-    const result = await pool.query('INSERT INTO users (name, email, password, bio) VALUES ($1, $2, $3, $4) RETURNING *', [
-        name,
+    const result = await pool.query('INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *', [
+        username,
         email,
         hashedPassword,
-        bio,
     ]);
 
     // Return the newly created user
@@ -50,7 +49,7 @@ const loginUser = async (email, password) => {
 
         return {
             id: user.id,
-            name: user.name,
+            username: user.username,
             accessToken,
             refreshToken,
         };

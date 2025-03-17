@@ -21,7 +21,7 @@ The API is used for the frontend application to interact with the database. Some
 - /api/my-playlists/:playlistID/songs
     - Allows requests to be made to view/edit the songs of a specific playlist belonging to the currently logged-in user, specified by :playlistID.
 
-More detailed information, including example request/response JSON and HTTP status codes, can be found in the [API Documentation](https://github.com/technative-academy/mixtape-magic-api/blob/main/docs/api.md).
+More detailed information about all available endpoints, example request/response JSON, and HTTP status codes, can be found in the [API Documentation](https://github.com/technative-academy/mixtape-magic-api/blob/main/docs/api.md).
 
 ## Database
 

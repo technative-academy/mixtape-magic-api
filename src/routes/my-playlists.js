@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
         const results = await pool.query('SELECT * FROM playlists WHERE owner_id = $1', [req.user.id]);
         res.status(200).json(results.rows);
     } catch (error) {
+        console.error(error);
         res.sendStatus(500);
     }
 });
@@ -23,6 +24,7 @@ router.get('/:playlistID', async (req, res) => {
         playlist.songs = await pool.query('SELECT * FROM songs WHERE playlist_id = $1', [req.params.playlistID]).rows;
         res.status(200).json(playlist);
     } catch (error) {
+        console.error(error);
         res.sendStatus(500);
     }
 });
@@ -40,6 +42,7 @@ router.post('/', async (req, res) => {
         ]);
         res.sendStatus(201);
     } catch (error) {
+        console.error(error);
         res.sendStatus(500);
     }
 });
@@ -59,6 +62,7 @@ router.patch('/:playlistID', async (req, res) => {
         }
         res.sendStatus(200);
     } catch (error) {
+        console.error(error);
         sendStatus(500);
     }
 });
@@ -70,6 +74,7 @@ router.delete('/:playlistID', async (req, res) => {
         await pool.query('DELETE FROM playlists WHERE id=$1;', [req.params.playlistID]);
         res.sendStatus(204);
     } catch (error) {
+        console.error(error);
         res.sendStatus(500);
     }
 });
@@ -87,6 +92,7 @@ router.post('/:playlistID/songs/', async (req, res) => {
         ]);
         res.sendStatus(201);
     } catch (error) {
+        console.error(error);
         res.sendStatus(500);
     }
 });
@@ -106,6 +112,7 @@ router.patch('/:playlistID/songs/:songID', async (req, res) => {
         }
         res.sendStatus(200);
     } catch (error) {
+        console.error(error);
         res.sendStatus(500);
     }
 });
@@ -117,6 +124,7 @@ router.delete('/:playlistID/songs/:songID', async (req, res) => {
         await pool.query('DELETE FROM songs WHERE id=$1;', [req.params.songID]);
         res.sendStatus(204);
     } catch (error) {
+        console.error(error);
         res.sendStatus(500);
     }
 });

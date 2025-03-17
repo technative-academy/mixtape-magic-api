@@ -16,6 +16,7 @@ router.get('/', authenticateToken, async (req, res) => {
 
         res.json(result.rows[0]);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
@@ -53,6 +54,7 @@ router.patch('/', authenticateToken, async (req, res) => {
 
         res.sendStatus(200);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
@@ -69,6 +71,7 @@ router.delete('/', authenticateToken, async (req, res) => {
 
         res.sendStatus(204);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });

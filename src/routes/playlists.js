@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
         const results = await pool.query('SELECT * FROM playlists');
         res.json(results.rows);
     } catch (error) {
+        console.error(error);
         res.sendStatus(500);
     }
 });
@@ -22,6 +23,7 @@ router.get('/:playlistID', async (req, res) => {
         playlist.songs = await pool.query('SELECT * FROM songs WHERE playlist_id = $1', [req.params.playlistID]).rows;
         res.json(playlist);
     } catch {
+        console.error(error);
         res.sendStatus(500);
     }
 });

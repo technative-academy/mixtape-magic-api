@@ -56,11 +56,13 @@ Returns a list of registered users.
         [
             {
                 "id": 1,
-                "username": "John Doe"
+                "username": "John Doe",
+                "image_url": "exampleimage.png"
             },
             {
                 "id": 2,
-                "username": "Jane Doe"
+                "username": "Jane Doe",
+                "image_url": "exampleimage.png"
             }
         ]
         ```
@@ -112,30 +114,43 @@ Returns a list of all playlists from every user.
 - **Request:** None
 
 - **Response:**
+
     - Status: `200 OK`
     - Body:
+
         ```json
         [
             {
                 "id": 1,
                 "name": "Playlist 1",
-                "owner_id": 1,
+                "owner": {
+                    "id": 1,
+                    "username": "John Doe",
+                    "image_url": "exampleimage.png"
+                },
                 "date_created": "2025-03-02",
-                "image_url": "images/example.png"
+                "image_url": "images/example.png",
+                "song_count": 4
             },
             {
                 "id": 2,
                 "name": "Playlist 2",
                 "owner_id": 5,
                 "date_created": "2025-02-25",
-                "image_url": "images/example.png"
+                "image_url": "images/example.png",
+                "song_count": 7
             },
             {
                 "id": 3,
                 "name": "Playlist 3",
-                "owner_id": 9,
+                "owner": {
+                    "id": 2,
+                    "username": "Jane Doe",
+                    "image_url": "exampleimage.png"
+                },
                 "date_created": "2025-01-05",
-                "image_url": "images/example.png"
+                "image_url": "images/example.png",
+                "song_count": 25
             }
         ]
         ```
@@ -157,6 +172,7 @@ Returns detailed information about a specific playlist.
             "date_created": "2025-03-02",
             "image_url": "images/example.png",
             "description": "This is an example playlist.",
+            "song_count": 3,
             "songs": [
                 {
                     "id": 1,
@@ -203,14 +219,16 @@ Returns a list of all the playlists owned by the currently logged-in user.
                 "name": "Playlist 2",
                 "owner_id": 5,
                 "date_created": "2025-02-25",
-                "image_url": "images/example.png"
+                "image_url": "images/example.png",
+                "song_count": 34
             },
             {
                 "id": 7,
                 "name": "Playlist 7",
                 "owner_id": 5,
                 "date_created": "2025-01-05",
-                "image_url": "images/example.png"
+                "image_url": "images/example.png",
+                "song_count": 5
             }
         ]
         ```
@@ -232,6 +250,7 @@ Returns detailed information about a specific playlist owned by the currently lo
             "date_created": "2025-01-05",
             "image_url": "images/example.png",
             "description": "This is an example playlist.",
+            "song_count": 3,
             "songs": [
                 {
                     "id": 1,

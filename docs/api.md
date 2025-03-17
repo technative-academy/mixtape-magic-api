@@ -55,11 +55,11 @@ Returns a list of registered users.
         ```json
         [
             {
-                "ID": 1,
+                "id": 1,
                 "username": "John Doe"
             },
             {
-                "ID": 2,
+                "id": 2,
                 "username": "Jane Doe"
             }
         ]
@@ -96,9 +96,8 @@ Returns the details of the currently logged-in user.
     - Body:
         ```json
         {
-            "ID": 1,
-            "username": "John Doe",
-            "email": "johndoe@example.com"
+            "id": 1,
+            "username": "John Doe"
         }
         ```
 
@@ -118,25 +117,25 @@ Returns a list of all playlists from every user.
         ```json
         [
             {
-                "ID": 1,
+                "id": 1,
                 "name": "Playlist 1",
-                "owner": 1,
-                "dateCreated": "2025-03-02",
-                "coverImage": "images/example.png"
+                "owner_id": 1,
+                "date_created": "2025-03-02",
+                "image_url": "images/example.png"
             },
             {
-                "ID": 2,
+                "id": 2,
                 "name": "Playlist 2",
-                "owner": 5,
-                "dateCreated": "2025-02-25",
-                "coverImage": "images/example.png"
+                "owner_id": 5,
+                "date_created": "2025-02-25",
+                "image_url": "images/example.png"
             },
             {
-                "ID": 3,
+                "id": 3,
                 "name": "Playlist 3",
-                "owner": 9,
-                "dateCreated": "2025-01-05",
-                "coverImage": "images/example.png"
+                "owner_id": 9,
+                "date_created": "2025-01-05",
+                "image_url": "images/example.png"
             }
         ]
         ```
@@ -152,30 +151,33 @@ Returns detailed information about a specific playlist.
     - Body:
         ```json
         {
-            "ID": 1,
+            "id": 1,
             "name": "Playlist 1",
-            "owner": 1,
-            "dateCreated": "2025-03-02",
-            "coverImage": "images/example.png",
+            "owner_id": 1,
+            "date_created": "2025-03-02",
+            "image_url": "images/example.png",
             "description": "This is an example playlist.",
             "songs": [
                 {
-                    "ID": 1,
-                    "name": "Example Song 1",
+                    "id": 1,
+                    "title": "Example Song 1",
                     "artist": "Example Artist 1",
-                    "file": "songs/examplesong1.mp3"
+                    "song_url": "songs/examplesong1.mp3",
+                    "playlist_id": 1
                 },
                 {
-                    "ID": 2,
-                    "name": "Example Song 2",
+                    "id": 2,
+                    "title": "Example Song 2",
                     "artist": "Example Artist 2",
-                    "file": "songs/examplesong2.mp3"
+                    "song_url": "songs/examplesong2.mp3",
+                    "playlist_id": 1
                 },
                 {
-                    "ID": 3,
-                    "name": "Example Song 3",
+                    "id": 3,
+                    "title": "Example Song 3",
                     "artist": "Example Artist 3",
-                    "file": "songs/examplesong3.mp3"
+                    "song_url": "songs/examplesong3.mp3",
+                    "playlist_id": 1
                 }
             ]
         }
@@ -197,18 +199,18 @@ Returns a list of all the playlists owned by the currently logged-in user.
         ```json
         [
             {
-                "ID": 2,
+                "id": 2,
                 "name": "Playlist 2",
-                "owner": 5,
-                "dateCreated": "2025-02-25",
-                "coverImage": "images/example.png"
+                "owner_id": 5,
+                "date_created": "2025-02-25",
+                "image_url": "images/example.png"
             },
             {
-                "ID": 7,
+                "id": 7,
                 "name": "Playlist 7",
-                "owner": 5,
-                "dateCreated": "2025-01-05",
-                "coverImage": "images/example.png"
+                "owner_id": 5,
+                "date_created": "2025-01-05",
+                "image_url": "images/example.png"
             }
         ]
         ```
@@ -224,30 +226,33 @@ Returns detailed information about a specific playlist owned by the currently lo
     - Body:
         ```json
         {
-            "ID": 7,
+            "id": 7,
             "name": "Playlist 7",
-            "owner": 5,
-            "dateCreated": "2025-01-05",
-            "coverImage": "images/example.png",
+            "owner_id": 5,
+            "date_created": "2025-01-05",
+            "image_url": "images/example.png",
             "description": "This is an example playlist.",
             "songs": [
                 {
-                    "ID": 1,
-                    "name": "Example Song 1",
+                    "id": 1,
+                    "title": "Example Song 1",
                     "artist": "Example Artist 1",
-                    "file": "songs/examplesong1.mp3"
+                    "song_url": "songs/examplesong1.mp3",
+                    "playlist_id": 7
                 },
                 {
-                    "ID": 2,
-                    "name": "Example Song 2",
+                    "id": 2,
+                    "title": "Example Song 2",
                     "artist": "Example Artist 2",
-                    "file": "songs/examplesong2.mp3"
+                    "song_url": "songs/examplesong2.mp3",
+                    "playlist_id": 7
                 },
                 {
-                    "ID": 3,
-                    "name": "Example Song 3",
+                    "id": 3,
+                    "title": "Example Song 3",
                     "artist": "Example Artist 3",
-                    "file": "songs/examplesong3.mp3"
+                    "song_url": "songs/examplesong3.mp3",
+                    "playlist_id": 7
                 }
             ]
         }

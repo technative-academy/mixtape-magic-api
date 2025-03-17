@@ -2,6 +2,10 @@
 
 This is the backend repository providing database and API access to [Mixtape Magic](https://github.com/technative-academy/Mixtape-Magic).
 
+The API is written in JavaScript using [Node.js](https://nodejs.org/en) & [Express](https://expressjs.com/), and hosted on [Render](https://render.com/).
+
+The database uses PostgreSQL, and hosted on [Xata](https://xata.io/).
+
 ## API
 
 The API is used for the frontend application to interact with the database. Some important endpoints are:
@@ -20,6 +24,14 @@ The API is used for the frontend application to interact with the database. Some
 More detailed information, including example request/response JSON and HTTP status codes, can be found in the [API Documentation](https://github.com/technative-academy/mixtape-magic-api/blob/main/docs/api.md).
 
 ## Database
+
+The PostgreSQL database contains the following tables:
+
+- `users`
+- `playlists`
+- `songs`
+
+More detailed information about the database, including the SQL used to create the tables and example SQL queries, can be found in the [Database Documentation](https://github.com/technative-academy/mixtape-magic-api/blob/main/docs/db.md).
 
 ## Using this repository
 

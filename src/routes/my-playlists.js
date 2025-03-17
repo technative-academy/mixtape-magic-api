@@ -8,8 +8,15 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     // get all playlists for the logged in user
     try {
-        const results = await pool.query('SELECT * FROM playlists WHERE owner_id = $1', [req.user.id]);
-        res.status(200).json(results.rows);
+        const playlists = await pool.query('SELECT * FROM playlists WHERE owner_id = $1', [req.user.id]);
+        const results = [];
+        for (let i = 0; i < playlists.rows.length; i++) {
+            const playlist = playlists.rows[i];
+            const songs = await pool.query('SELECT * FROM songs WHERE playlist_id = $1', [playlist.id]);
+            playlist.song_count = songs.rows.length;
+            results.push(playlist);
+        }
+        res.status(200).json(results);
     } catch (error) {
         console.error(error);
         res.sendStatus(500);
@@ -26,6 +33,7 @@ router.get('/:playlistID', async (req, res) => {
         }
         const playlist = playlists.rows[0];
         const songs = await pool.query('SELECT * FROM songs WHERE playlist_id = $1', [req.params.playlistID]);
+        playlist.song_count = songs.rows.length;
         playlist.songs = songs.rows;
         res.status(200).json(playlist);
     } catch (error) {

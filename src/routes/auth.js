@@ -9,6 +9,7 @@ router.post('/register', async (req, res) => {
         const user = await registerUser(username, email, password);
         res.status(201).json(user);
     } catch (error) {
+        console.error(error);
         res.status(400).json({ error: error.message });
     }
 });
@@ -27,6 +28,7 @@ router.post('/login', async (req, res) => {
 
         res.json({ id, username, accessToken });
     } catch (error) {
+        console.error(error);
         res.status(400).json({ error: error.message });
     }
 });
@@ -43,6 +45,7 @@ router.post('/refresh-token', async (req, res) => {
 
         res.json({ accessToken: newAccessToken });
     } catch (error) {
+        console.error(error);
         res.status(403).json({ error: error.message });
     }
 });

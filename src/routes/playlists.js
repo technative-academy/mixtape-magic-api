@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     // get a list of all playlists
     try {
         const results = await pool.query('SELECT * FROM playlists');
-        res.json(results.rows);
+        res.status(200).json(results.rows);
     } catch (error) {
         console.error(error);
         res.sendStatus(500);
@@ -26,7 +26,7 @@ router.get('/:playlistID', async (req, res) => {
         const playlist = playlists.rows[0];
         const songs = await pool.query('SELECT * FROM songs WHERE playlist_id = $1', [req.params.playlistID]);
         playlist.songs = songs.rows;
-        res.json(playlist);
+        res.status(200).json(playlist);
     } catch (error) {
         console.error(error);
         res.sendStatus(500);

@@ -19,8 +19,10 @@ router.get('/', async (req, res) => {
 router.get('/:playlistID', async (req, res) => {
     // get a specific playlist by ID
     try {
-        const playlist = await pool.query('SELECT * FROM playlists WHERE id = $1', [req.params.playlistID]).rows[0];
-        playlist.songs = await pool.query('SELECT * FROM songs WHERE playlist_id = $1', [req.params.playlistID]).rows;
+        let playlist = await pool.query('SELECT * FROM playlists WHERE id = $1', [req.params.playlistID]);
+        playlists = playlist.rows[0];
+        const songs = await pool.query('SELECT * FROM songs WHERE playlist_id = $1', [req.params.playlistID]);
+        playlist.songs = songs.rows;
         res.json(playlist);
     } catch {
         console.error(error);

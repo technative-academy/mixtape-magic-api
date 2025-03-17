@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     // get a list of all registered users
     try {
-        const results = await pool.query('SELECT * FROM users');
+        const results = await pool.query('SELECT id, username, image_url FROM users');
         res.json(results.rows);
     } catch (error) {
         console.error(error);

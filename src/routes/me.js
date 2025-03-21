@@ -6,9 +6,8 @@ const router = express.Router();
 
 // Get /api/me/
 router.get('/', authenticateToken, async (req, res) => {
-    const { id } = req.params;
     try {
-        const result = await pool.query('SELECT id, username, image_url FROM users WHERE id = $1', [id]);
+        const result = await pool.query('SELECT id, username, image_url FROM users WHERE id = $1', [req.user.id]);
 
         if (result.rows.length === 0) {
             return res.status(400).json({ error: 'User not found' });
@@ -22,22 +21,21 @@ router.get('/', authenticateToken, async (req, res) => {
 });
 
 router.patch('/', authenticateToken, async (req, res) => {
-    const { id } = req.params;
     const { newUsername, newEmail, newPassword, newImageURL } = req.body;
 
     try {
-        const result = await pool.query('SELECT id, username, image_url FROM users WHERE id = $1', [id]);
+        const result = await pool.query('SELECT id, username, image_url FROM users WHERE id = $1', [req.user.id]);
 
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'User not found' });
         }
 
         if (typeof newUsername != 'undefined') {
-            await pool.query('UPDATE users SET username = $1 WHERE id = $2', [newUsername, id]);
+            await pool.query('UPDATE users SET username = $1 WHERE id = $2', [newUsername, req.user.id]);
         }
 
         if (typeof newEmail != 'undefined') {
-            await pool.query('UPDATE users SET email = $1 WHERE id = $2', [newEmail, id]);
+            await pool.query('UPDATE users SET email = $1 WHERE id = $2', [newEmail, req.user.id]);
         }
 
         if (typeof newPassword != 'undefined') {
@@ -45,11 +43,11 @@ router.patch('/', authenticateToken, async (req, res) => {
             // hash the password and insert the new user into the database
             const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-            await pool.query('UPDATE users SET password = $1 WHERE id = $2', [hashedPassword, id]);
+            await pool.query('UPDATE users SET password = $1 WHERE id = $2', [hashedPassword, req.user.id]);
         }
 
         if (typeof newImageURL != 'undefined') {
-            await pool.query('UPDATE users SET imageURL = $1 WHERE id = $2'[(newImageURL, id)]);
+            await pool.query('UPDATE users SET imageURL = $1 WHERE id = $2'[(newImageURL, req.user.id)]);
         }
 
         res.sendStatus(200);
@@ -60,10 +58,8 @@ router.patch('/', authenticateToken, async (req, res) => {
 });
 
 router.delete('/', authenticateToken, async (req, res) => {
-    const { id } = req.params;
-
     try {
-        const result = await pool.query('DELETE FROM users WHERE id = $1', [id]);
+        const result = await pool.query('DELETE FROM users WHERE id = $1', [req.user.id]);
 
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'User not found' });

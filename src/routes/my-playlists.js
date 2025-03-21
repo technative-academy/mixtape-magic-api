@@ -10,11 +10,13 @@ router.get('/', authenticateToken, async (req, res) => {
     // get all playlists for the logged in user
     try {
         const playlists = await pool.query('SELECT * FROM playlists WHERE owner_id = $1', [req.user.id]);
+        const owner = await pool.query('SELECT id, username, image_url FROM users WHERE id = $1', [req.user.id]);
         const results = [];
         for (let i = 0; i < playlists.rows.length; i++) {
             const playlist = playlists.rows[i];
             const songs = await pool.query('SELECT * FROM songs WHERE playlist_id = $1', [playlist.id]);
             playlist.song_count = songs.rows.length;
+            playlist.owner = owner.rows[0];
             results.push(playlist);
         }
         res.status(200).json(results);
@@ -47,10 +49,9 @@ router.get('/:playlistID', authenticateToken, async (req, res) => {
 router.post('/', authenticateToken, async (req, res) => {
     // create a new playlist for the logged in user
     try {
-        await pool.query('INSERT INTO playlists (name, owner_id, date_created, description, image_url) VALUES ($1, $2, $3, $4, $5);', [
+        await pool.query('INSERT INTO playlists (name, owner_id, date_created, description, image_url) VALUES ($1, $2, NOW(), $3, $4);', [
             req.body.name,
             req.user.id,
-            req.body.createdDate,
             req.body.description,
             req.body.coverImage,
         ]);

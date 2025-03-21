@@ -287,7 +287,6 @@ Creates a new playlist for the currently logged-in user.
         ```json
         {
             "name": "New Playlist",
-            "userID": 5,
             "createdDate": "2025-03-03",
             "coverImage": "images/example.png",
             "description": "This is an example of a new playlist."

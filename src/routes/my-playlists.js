@@ -1,11 +1,12 @@
 import express from 'express';
 import pool from '../db.js';
+import authenticateToken from '../middlewere/auth.js';
 
 const router = express.Router();
 
 // Endpoints for playlists
 // GET /api/my-playlists/
-router.get('/', async (req, res) => {
+router.get('/', authenticateToken, async (req, res) => {
     // get all playlists for the logged in user
     try {
         const playlists = await pool.query('SELECT * FROM playlists WHERE owner_id = $1', [req.user.id]);
@@ -24,7 +25,7 @@ router.get('/', async (req, res) => {
 });
 
 // GET /api/my-playlists/:playlistID
-router.get('/:playlistID', async (req, res) => {
+router.get('/:playlistID', authenticateToken, async (req, res) => {
     // access the playlistID from the URL by using req.params.playlistID
     try {
         const playlists = await pool.query('SELECT * FROM playlists WHERE owner_id = $1 AND id = $2', [req.user.id, req.params.playlistID]);
@@ -43,7 +44,7 @@ router.get('/:playlistID', async (req, res) => {
 });
 
 // POST /api/my-playlists/
-router.post('/', async (req, res) => {
+router.post('/', authenticateToken, async (req, res) => {
     // create a new playlist for the logged in user
     try {
         await pool.query('INSERT INTO playlists (name, owner_id, date_created, description, image_url) VALUES ($1, $2, $3, $4, $5);', [
@@ -61,7 +62,7 @@ router.post('/', async (req, res) => {
 });
 
 // PATCH /api/my-playlists/:playlistID
-router.patch('/:playlistID', async (req, res) => {
+router.patch('/:playlistID', authenticateToken, async (req, res) => {
     // update the specified playlist
     try {
         if (typeof req.body.name != 'undefined') {
@@ -81,7 +82,7 @@ router.patch('/:playlistID', async (req, res) => {
 });
 
 // DELETE /api/my-playlists/:playlistID
-router.delete('/:playlistID', async (req, res) => {
+router.delete('/:playlistID', authenticateToken, async (req, res) => {
     // delete the specified playlist
     try {
         await pool.query('DELETE FROM playlists WHERE id=$1;', [req.params.playlistID]);
@@ -94,7 +95,7 @@ router.delete('/:playlistID', async (req, res) => {
 
 // Endpoints for songs
 // POST /api/my-playlists/:playlistID/songs/
-router.post('/:playlistID/songs/', async (req, res) => {
+router.post('/:playlistID/songs/', authenticateToken, async (req, res) => {
     // add a song to the specified playlist
     try {
         await pool.query('INSERT INTO songs (title, artist, song_url, playlist_id) VALUES ($1, $2, $3, $4);', [
@@ -111,7 +112,7 @@ router.post('/:playlistID/songs/', async (req, res) => {
 });
 
 // PATCH /api/my-playlists/:playlistID/songs/
-router.patch('/:playlistID/songs/:songID', async (req, res) => {
+router.patch('/:playlistID/songs/:songID', authenticateToken, async (req, res) => {
     // update the specified song
     try {
         if (typeof req.body.name != 'undefined') {
@@ -131,7 +132,7 @@ router.patch('/:playlistID/songs/:songID', async (req, res) => {
 });
 
 // DELETE /api/my-playlists/:playlistID/songs/
-router.delete('/:playlistID/songs/:songID', async (req, res) => {
+router.delete('/:playlistID/songs/:songID', authenticateToken, async (req, res) => {
     // delete the specified song
     try {
         await pool.query('DELETE FROM songs WHERE id=$1;', [req.params.songID]);

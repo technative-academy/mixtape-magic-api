@@ -78,7 +78,7 @@ router.patch('/:playlistID', authenticateToken, async (req, res) => {
         res.sendStatus(200);
     } catch (error) {
         console.error(error);
-        sendStatus(500);
+        res.sendStatus(500);
     }
 });
 
